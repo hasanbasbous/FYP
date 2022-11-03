@@ -4,6 +4,8 @@ const mongoose = require('mongoose');
 
 const parkLotRoute = require('./routes/park-lot-routes');
 const usersRoute = require('./routes/users-routes');
+const potholeRoute = require('./routes/pothole-map-routes');
+
 const HttpError = require('./models/http-error');
 
 const app = express();
@@ -21,6 +23,7 @@ app.use((req, res, next) => {
 
 app.use('/api/parking', parkLotRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/pothole', potholeRoute);
 
 app.use((req, res, next) => {
 	return next(new HttpError('Could not found find this route', 404));
@@ -38,7 +41,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		'mongodb+srv://hasan:<password>@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
+		'mongodb+srv://hasan:e6G5mlrfSf3JdCDu@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
 	)
 	.then(() => {
 		app.listen(5000);
