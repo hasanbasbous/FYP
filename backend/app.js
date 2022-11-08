@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const parkLotRoute = require('./routes/park-lot-routes');
 const usersRoute = require('./routes/users-routes');
 const potholeRoute = require('./routes/pothole-map-routes');
+const crashRoute = require('./routes/crash-routes');
 
 const HttpError = require('./models/http-error');
 
@@ -24,6 +25,7 @@ app.use((req, res, next) => {
 app.use('/api/parking', parkLotRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/pothole', potholeRoute);
+app.use('/api/crash', crashRoute);
 
 app.use((req, res, next) => {
 	return next(new HttpError('Could not found find this route', 404));
