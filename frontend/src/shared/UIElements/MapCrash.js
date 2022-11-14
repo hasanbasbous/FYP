@@ -1,40 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import io from 'socket.io-client';
+
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
 import './Map.css';
+import Button from '../FormElements/Button';
 
-// const crash = [
-// 	{
-// 		id: 1,
-// 		name: 'Roudy Abou Zeid',
-// 		intensity: '3.8g',
-// 		date: '10/21/2022',
-// 		position: { lat: 41.881832, lng: -87.623177 },
-// 	},
-// 	{
-// 		id: 2,
-// 		name: 'Hasan Basbous',
-// 		intensity: '3.3g',
-// 		date: '12/12/2021',
-// 		position: { lat: 39.739235, lng: -104.99025 },
-// 	},
-// 	{
-// 		id: 3,
-// 		name: 'Antoine Doumit',
-// 		intensity: '4.2g',
-// 		date: '01/13/2022',
-// 		position: { lat: 34.052235, lng: -118.243683 },
-// 	},
-// 	{
-// 		id: 4,
-// 		name: 'Antoine Doumit',
-// 		intensity: '4.2g',
-// 		date: '01/13/2022',
-// 		position: { lat: 40.712776, lng: -74.005974 },
-// 	},
-// ];
+const socket = io('http://localhost:5000');
 
 const MapCrash = (props) => {
-	const crash = props.crash;
+	let crash = props.crash;
 	// console.log(crash[0].date.substring(5, 7));
 	const [activeMarker, setActiveMarker] = useState(null);
 	const [initialCrash, setInitialCrash] = useState(crash);
@@ -51,71 +25,95 @@ const MapCrash = (props) => {
 	//filter state
 
 	const January = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '01');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() === 1
+		);
 		setInitialCrash(crashFiltered);
 	};
 	const February = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '02');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 2
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const March = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '03');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 3
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const April = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '04');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 4
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const May = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '05');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 5
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const June = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '06');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 6
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const July = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '07');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 7
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const August = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '08');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 8
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const September = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '09');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 9
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const October = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '10');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 10
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const November = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '11');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 11
+		);
 
 		setInitialCrash(crashFiltered);
 	};
 
 	const December = () => {
-		const crashFiltered = crash.filter((e) => e.date.substring(5, 7) === '12');
+		const crashFiltered = crash.filter(
+			(e) => new Date(e.date).getMonth() + 1 === 12
+		);
 
 		setInitialCrash(crashFiltered);
 	};
@@ -150,12 +148,50 @@ const MapCrash = (props) => {
 		map.fitBounds(bounds);
 	};
 
+	const checkDate = (crashInstanceDate) => {
+		const currentDate = new Date();
+		const y = currentDate.getFullYear();
+		const m = currentDate.getMonth() + 1;
+		const day = currentDate.getDate();
+		const hours = currentDate.getHours();
+
+		const crashDate = new Date(crashInstanceDate);
+		const yCrash = crashDate.getFullYear();
+		const mCrash = crashDate.getMonth() + 1;
+		const dayCrash = crashDate.getDate();
+		const hoursCrash = crashDate.getHours();
+
+		let x;
+		if (
+			y - yCrash === 0 &&
+			m - mCrash === 0 &&
+			day - dayCrash === 0 &&
+			hours - hoursCrash < 2
+		)
+			x = true;
+		else x = false;
+
+		return x;
+	};
+
+	useEffect(() => {
+		socket.on('receiveGreet', (data) => {
+			// crash.push(data.data);
+			// setInitialCrash(crash);
+			window.location.reload();
+		});
+		return () => {
+			socket.off('receiveGreet');
+		};
+	}, []);
+
 	return (
 		<React.Fragment>
 			<GoogleMap
 				onLoad={handleOnLoad}
 				onClick={() => setActiveMarker(null)}
-				mapContainerStyle={{ width: '100%', height: '27rem' }}
+				mapContainerClassName="mapstyle"
+				// mapContainerStyle={{ width: '100%', height: '27rem' }}
 			>
 				{initialCrash.map(({ id, driver_name, location, intensity, date }) => (
 					//populating the map witg the marker in the line above
@@ -164,6 +200,14 @@ const MapCrash = (props) => {
 						key={id}
 						position={location}
 						onClick={() => handleActiveMarker(id)}
+						icon={{
+							path: 'M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z',
+							fillColor: checkDate(date) ? 'red' : 'blue',
+							fillOpacity: 0.6,
+							strokeWeight: 0,
+							rotation: 0,
+							scale: 2,
+						}}
 					>
 						{activeMarker === id ? (
 							<InfoWindow onCloseClick={() => setActiveMarker(null)}>
@@ -177,21 +221,27 @@ const MapCrash = (props) => {
 					</Marker>
 				))}
 			</GoogleMap>
-			<select id="mySelect" onChange={myFunction}>
-				<option value="reset">reset</option>
-				<option value="January">January</option>
-				<option value="February">February</option>
-				<option value="March">March</option>
-				<option value="April">April</option>
-				<option value="May">May</option>
-				<option value="June">June</option>
-				<option value="July">July</option>
-				<option value="August">August</option>
-				<option value="September">September</option>
-				<option value="October">October</option>
-				<option value="November">November</option>
-				<option value="December">December</option>
-			</select>
+			<div class="grid-container">
+				<div class="custom-select">
+					<select id="mySelect" onChange={myFunction}>
+						<option value="reset">reset</option>
+						<option value="January">January</option>
+						<option value="February">February</option>
+						<option value="March">March</option>
+						<option value="April">April</option>
+						<option value="May">May</option>
+						<option value="June">June</option>
+						<option value="July">July</option>
+						<option value="August">August</option>
+						<option value="September">September</option>
+						<option value="October">October</option>
+						<option value="November">November</option>
+						<option value="December">December</option>
+					</select>
+				</div>
+
+				<Button to="/features">Go Back</Button>
+			</div>
 		</React.Fragment>
 	);
 };

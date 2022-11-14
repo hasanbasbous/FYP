@@ -44,6 +44,8 @@ const FeatureItem = (props) => {
 							<Button to="/parking">Choose parking lot</Button>
 						) : props.id === 'crash' ? (
 							<Button to="/crash">View on Map</Button>
+						) : props.id === 'potholes' ? (
+							<Button to="/potholes">View on Map</Button>
 						) : (
 							<Button onClick={openPopupHandler}>View on Map</Button>
 						)}

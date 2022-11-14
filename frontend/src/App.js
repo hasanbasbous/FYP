@@ -13,9 +13,10 @@ import CrashPlaces from './crash/pages/CrashPlaces';
 import Auth from './user/pages/Auth';
 import MainNavigation from './shared/Navigation/MainNavigation';
 import { AuthContext } from './context/auth-context';
+import PotholesPlaces from './potholes/pages/PotholesPlaces';
 
 const App = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(false);
+	const [isLoggedIn, setIsLoggedIn] = useState(true);
 
 	const login = useCallback(() => {
 		setIsLoggedIn(true);
@@ -38,6 +39,9 @@ const App = () => {
 				</Route>
 				<Route path="/parking" exact>
 					<ParkingPlaces />
+				</Route>
+				<Route path="/potholes" exact>
+					<PotholesPlaces />
 				</Route>
 				<Route path="/crash" exact>
 					<CrashPlaces />

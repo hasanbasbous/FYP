@@ -1,19 +1,18 @@
 import React, { useEffect, useState } from 'react';
 
-import ParkingList from '../components/ParkingList';
+import MapPotholes from '../../shared/UIElements/MapPotholes';
 import ErrorModal from '../../shared/UIElements/ErrorModal';
 import LoadingSpinner from '../../shared/UIElements/LoadingSpinner';
 
-const ParkingPlaces = () => {
+const PotholesPlaces = () => {
 	const [isLoading, setIsLoading] = useState(false);
 	const [error, setError] = useState();
-	const [loadedParkings, setLoadedParkings] = useState();
-
+	const [loadedPotholes, setPotholesLocations] = useState();
 	useEffect(() => {
 		const sendRequst = async () => {
 			setIsLoading(true);
 			try {
-				const response = await fetch('http://localhost:5000/api/parking');
+				const response = await fetch('http://localhost:5000/api/pothole');
 
 				const responseData = await response.json();
 				console.log(responseData);
@@ -21,7 +20,7 @@ const ParkingPlaces = () => {
 					throw new Error(responseData.message);
 				}
 
-				setLoadedParkings(responseData.parkings);
+				setPotholesLocations(responseData.potholes);
 			} catch (err) {
 				setError(err.message);
 			}
@@ -29,7 +28,6 @@ const ParkingPlaces = () => {
 		};
 		sendRequst();
 	}, []);
-
 	const errorHandler = () => {
 		setError(null);
 	};
@@ -42,9 +40,11 @@ const ParkingPlaces = () => {
 					<LoadingSpinner />
 				</div>
 			)}
-			{!isLoading && loadedParkings && <ParkingList items={loadedParkings} />}
+			{!isLoading && loadedPotholes && (
+				<MapPotholes potholes={loadedPotholes} />
+			)}
 		</React.Fragment>
 	);
 };
 
-export default ParkingPlaces;
+export default PotholesPlaces;

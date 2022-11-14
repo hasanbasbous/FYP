@@ -1,6 +1,21 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const http = require('http');
+const app = express();
+const server = http.createServer(app);
+const socketio = require('socket.io');
+const cors = require('cors');
+app.use(cors());
+// const io = new Server(server);
+var chat = require('./models/connection');
+const io = socketio(server, {
+	cors: {
+		origin: '*',
+		methods: ['GET', 'POST'],
+	},
+});
+chat(io);
 
 const parkLotRoute = require('./routes/park-lot-routes');
 const usersRoute = require('./routes/users-routes');
@@ -9,8 +24,12 @@ const crashRoute = require('./routes/crash-routes');
 
 const HttpError = require('./models/http-error');
 
-const app = express();
 app.use(bodyParser.json());
+
+// io.on('connection', (socket) => {
+// 	console.log('a user connected');
+// });
+chat(server);
 
 app.use((req, res, next) => {
 	res.setHeader('Access-Control-Allow-Origin', '*'); // * any domain we can restric it to localhost:3000
@@ -43,9 +62,12 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		'mongodb+srv://hasan:<password>@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
+		'mongodb+srv://hasan:e6G5mlrfSf3JdCDu@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
 	)
 	.then(() => {
-		app.listen(5000);
+		// app.listen(5000);
+		server.listen(5000, () => {
+			console.log('Listening on *: 5000');
+		});
 	})
 	.catch((err) => console.log(err));

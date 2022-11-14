@@ -4,15 +4,6 @@ const User = require('../models/user');
 
 const HttpError = require('../models/http-error');
 
-// const DUMMY_USERS = [
-// 	{
-// 		id: 'u1',
-// 		name: 'hasan basbous',
-// 		email: 'test@test.com',
-// 		password: 'test',
-// 	},
-// ];
-
 const signup = async (req, res, next) => {
 	const errors = validationResult(req);
 	if (!errors.isEmpty()) {
