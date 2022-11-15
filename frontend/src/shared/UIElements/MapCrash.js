@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import addNotification from 'react-push-notification';
+import { Notifications } from 'react-push-notification';
 import io from 'socket.io-client';
 
 import { GoogleMap, InfoWindow, Marker } from '@react-google-maps/api';
@@ -178,15 +180,29 @@ const MapCrash = (props) => {
 		socket.on('receiveGreet', (data) => {
 			// crash.push(data.data);
 			// setInitialCrash(crash);
-			window.location.reload();
+			successNotification();
+			setTimeout(() => window.location.reload(), 4000);
 		});
 		return () => {
 			socket.off('receiveGreet');
 		};
 	}, []);
 
+	function successNotification() {
+		addNotification({
+			title: 'Crash',
+			// subtitle: 'A new crash has been detected',
+			message: 'A new crash has been reported',
+			theme: 'light',
+			closeButton: 'X',
+			backgroundTop: 'red',
+			backgroundBottom: 'orangered',
+		});
+	}
+
 	return (
 		<React.Fragment>
+			<Notifications />
 			<GoogleMap
 				onLoad={handleOnLoad}
 				onClick={() => setActiveMarker(null)}
