@@ -3,11 +3,11 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const http = require('http');
 const app = express();
+
 const server = http.createServer(app);
 const socketio = require('socket.io');
 const cors = require('cors');
 app.use(cors());
-// const io = new Server(server);
 var chat = require('./models/connection');
 const io = socketio(server, {
 	cors: {
@@ -62,7 +62,7 @@ app.use((error, req, res, next) => {
 
 mongoose
 	.connect(
-		'mongodb+srv://hasan:<password>@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
+		'mongodb+srv://hasan:e6G5mlrfSf3JdCDu@cluster0.cokbf4f.mongodb.net/db?retryWrites=true&w=majority'
 	)
 	.then(() => {
 		// app.listen(5000);

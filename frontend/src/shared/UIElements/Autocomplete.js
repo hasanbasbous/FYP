@@ -19,13 +19,14 @@ const AutoComplete = (props) => {
 		);
 		autoCompleteRef.current.addListener('place_changed', async function () {
 			const place = await autoCompleteRef.current.getPlace();
-			console.log(place.geometry.location.lat());
-			setZoom(
-				new window.google.maps.LatLng(
-					place.geometry.location.lat(),
-					place.geometry.location.lng()
-				)
-			);
+			if (place.geometry) {
+				setZoom(
+					new window.google.maps.LatLng(
+						place.geometry.location.lat(),
+						place.geometry.location.lng()
+					)
+				);
+			}
 		});
 	}, [zoom]);
 

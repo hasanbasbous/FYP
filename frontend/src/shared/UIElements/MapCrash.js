@@ -177,16 +177,20 @@ const MapCrash = (props) => {
 	};
 
 	useEffect(() => {
-		socket.on('receiveGreet', (data) => {
-			// crash.push(data.data);
-			// setInitialCrash(crash);
+		socket.on('crashupdate', (data) => {
+			crash.push(data.data);
+			setInitialCrash(crash);
 			successNotification();
-			setTimeout(() => window.location.reload(), 4000);
+			// setTimeout(() => window.location.reload(), 4000);
+			if (initialCrash) {
+				handleActiveMarker(initialCrash[0]._id);
+				setActiveMarker(null);
+			}
 		});
 		return () => {
-			socket.off('receiveGreet');
+			socket.off('crashupdate');
 		};
-	}, []);
+	}, [crash, initialCrash]);
 
 	function successNotification() {
 		addNotification({
@@ -207,15 +211,12 @@ const MapCrash = (props) => {
 				onLoad={handleOnLoad}
 				onClick={() => setActiveMarker(null)}
 				mapContainerClassName="mapstyle"
-				// mapContainerStyle={{ width: '100%', height: '27rem' }}
 			>
-				{initialCrash.map(({ id, driver_name, location, intensity, date }) => (
-					//populating the map witg the marker in the line above
-					//when we click on marker change the state which allows to open info winfow
+				{initialCrash.map(({ _id, driver_name, location, intensity, date }) => (
 					<Marker
-						key={id}
+						key={_id}
 						position={location}
-						onClick={() => handleActiveMarker(id)}
+						onClick={() => handleActiveMarker(_id)}
 						icon={{
 							path: 'M10.453 14.016l6.563-6.609-1.406-1.406-5.156 5.203-2.063-2.109-1.406 1.406zM12 2.016q2.906 0 4.945 2.039t2.039 4.945q0 1.453-0.727 3.328t-1.758 3.516-2.039 3.070-1.711 2.273l-0.75 0.797q-0.281-0.328-0.75-0.867t-1.688-2.156-2.133-3.141-1.664-3.445-0.75-3.375q0-2.906 2.039-4.945t4.945-2.039z',
 							fillColor: checkDate(date) ? 'red' : 'blue',
@@ -225,7 +226,7 @@ const MapCrash = (props) => {
 							scale: 2,
 						}}
 					>
-						{activeMarker === id ? (
+						{activeMarker === _id ? (
 							<InfoWindow onCloseClick={() => setActiveMarker(null)}>
 								<div>
 									<div>Driver: {driver_name}</div>
@@ -237,10 +238,10 @@ const MapCrash = (props) => {
 					</Marker>
 				))}
 			</GoogleMap>
-			<div class="grid-container">
-				<div class="custom-select">
+			<div className="grid-container">
+				<div className="custom-select">
 					<select id="mySelect" onChange={myFunction}>
-						<option value="reset">reset</option>
+						<option value="reset">Reset</option>
 						<option value="January">January</option>
 						<option value="February">February</option>
 						<option value="March">March</option>
