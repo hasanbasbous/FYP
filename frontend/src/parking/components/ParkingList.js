@@ -26,6 +26,7 @@ const ParkingList = (props) => {
 					vacant={parking.vacant_spots}
 					occupied={parking.occupied_spots}
 					location={parking.location}
+					date={parking.date}
 				/>
 			))}
 		</ul>

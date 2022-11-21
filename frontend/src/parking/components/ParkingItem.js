@@ -23,7 +23,7 @@ const ParkingItem = (props) => {
 				contentClass="feature-item__modal-content"
 				footerClass="feature-item__modal-actions"
 				footer={<Button onClick={closePopupHandler}>CLOSE</Button>}
-				vacant={props.placeCount}
+				vacant={props.vacant}
 			>
 				<div className="container">
 					<img
@@ -49,6 +49,10 @@ const ParkingItem = (props) => {
 							<h3>
 								{props.occupied}{' '}
 								{props.occupied === 1 ? 'Occupied spot' : 'Occupied spots'}
+							</h3>
+							<h3>
+								Last updated: {props.date.split(' ')[0]} @{' '}
+								{props.date.split(' ')[1]}
 							</h3>
 						</div>
 					</Link>

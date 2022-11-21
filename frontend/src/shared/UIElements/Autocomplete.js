@@ -45,6 +45,7 @@ const AutoComplete = (props) => {
 		const bounds = new google.maps.LatLngBounds();
 		potholes.forEach(({ location }) => bounds.extend(location));
 		map.fitBounds(bounds);
+		// map.setZoom(12);
 	};
 
 	return (
