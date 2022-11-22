@@ -1,0 +1,50 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto auto;
+  background-color: #2196F3;
+  padding: 10px;
+
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
+  text-align: center;
+}
+
+
+
+
+
+.tableFixHead {
+  margin-bottom: 3vh;
+  margin-left:2%;
+  margin-right:2%;
+  overflow-y: auto;
+  height: 48vh;
+}
+.tableFixHead thead th {
+  position: sticky;
+  top: 0;
+}
+table {
+ 
+  width: 100%;
+}
+
+th {
+  background: #eee;
+}
+
+
+
+
+
+
+@media only screen and (max-width: 600px) {
+  .grid-container {
+    grid-template-columns: auto;
+  }
+}
+

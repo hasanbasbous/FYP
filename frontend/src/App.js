@@ -14,6 +14,7 @@ import Auth from './user/pages/Auth';
 import MainNavigation from './shared/Navigation/MainNavigation';
 import { AuthContext } from './context/auth-context';
 import PotholesPlaces from './potholes/pages/PotholesPlaces';
+import DistractionFeature from './distraction/pages/DistractionFeature';
 
 const App = () => {
 	const [isLoggedIn, setIsLoggedIn] = useState(true);
@@ -45,6 +46,9 @@ const App = () => {
 				</Route>
 				<Route path="/crash" exact>
 					<CrashPlaces />
+				</Route>
+				<Route path="/distraction" exact>
+					<DistractionFeature />
 				</Route>
 				<Redirect to="/features" />
 			</Switch>
