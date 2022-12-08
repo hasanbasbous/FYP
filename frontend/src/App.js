@@ -17,7 +17,7 @@ import PotholesPlaces from './potholes/pages/PotholesPlaces';
 import DistractionFeature from './distraction/pages/DistractionFeature';
 
 const App = () => {
-	const [isLoggedIn, setIsLoggedIn] = useState(true);
+	const [isLoggedIn, setIsLoggedIn] = useState(false);
 
 	const login = useCallback(() => {
 		setIsLoggedIn(true);
