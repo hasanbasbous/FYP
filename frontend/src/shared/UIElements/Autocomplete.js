@@ -50,11 +50,13 @@ const AutoComplete = (props) => {
 
 	return (
 		<React.Fragment>
-			<div id="search-bar">
-				<label>Search address: </label>
-				<input ref={inputRef} />
+			<div className="buttons">
+				<div id="search-bar">
+					<label id="search-bar-label">Search address: </label>
+					<input ref={inputRef} />
+				</div>
+				<Button to="/features">Go Back</Button>
 			</div>
-
 			<GoogleMap
 				onLoad={handleOnLoad}
 				onClick={() => setActiveMarker(null)}
@@ -87,7 +89,6 @@ const AutoComplete = (props) => {
 					</Marker>
 				))}
 			</GoogleMap>
-			<Button to="/features">Go Back</Button>
 		</React.Fragment>
 	);
 };

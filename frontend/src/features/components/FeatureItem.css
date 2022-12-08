@@ -7,7 +7,7 @@
   }
   
   .feature-item__info {
-    padding: 1rem;
+    padding: 2rem;
     text-align: center;
   }
   
@@ -28,9 +28,19 @@
   .feature-item__info p {
     margin: 0 0 0.5rem 0;
   }
+  .feature-item__info h2{
+    font-size: 200%;
+
+  }
+
+  .feature-item__info p {
+    font-size: 150%;
+  }
+
+
   
   .feature-item__actions {
-    padding: 1rem;
+    padding: 1.5rem;
     text-align: center;
     border-top: 1px solid #ccc;
   }
@@ -46,6 +56,8 @@
   .feature-item__actions button,
   .feature-item__actions a {
     margin: 0.5rem;
+    font-size: larger;
+    padding: 0.7rem;
   }
   
   .map-container {
@@ -58,3 +70,31 @@
       height: 20rem;
     } 
   }
+
+  @media only screen and (max-width: 600px) {
+    .feature-item__info h2{
+      font-size: 150%;
+  
+    }
+  
+    .feature-item__info p {
+      font-size: 95%;
+    }
+    .feature-item__info {
+      padding: 1rem;
+      text-align: center;
+    }
+    .feature-item__actions {
+      padding: 1rem;
+      text-align: center;
+      border-top: 1px solid #ccc;
+    }
+    .feature-item__actions button,
+    .feature-item__actions a {
+      margin: 0.5rem;
+      font-size: large;
+     
+    }
+  }
+
+ 

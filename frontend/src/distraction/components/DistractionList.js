@@ -23,6 +23,7 @@ const DistractionList = (props) => {
 							location={place.location}
 							distracted={place.distracted}
 							drowsy={place.drowsy}
+							date={place.date}
 						/>
 					))}
 				</div>

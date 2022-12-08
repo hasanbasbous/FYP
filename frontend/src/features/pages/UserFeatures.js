@@ -7,7 +7,7 @@ const DUMMY_PLACES = [
   {
     id: 'parking',
     title: 'Parking Spots Availability',
-    description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
+    description: 'Real-time reporting park occupancy giving users and parking managers access to insights instantly and eagle-view of the parking.',
     imageUrl:
       'https://lirp.cdn-website.com/md/unsplash/dms3rep/multi/opt/photo-1506521781263-d8422e82f27a-1920w.jpg',
      
@@ -16,7 +16,7 @@ const DUMMY_PLACES = [
   {
     id: 'potholes',
     title: 'Pothole Detection',
-    description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
+    description: 'Pothole Mapper is a service that provides liveupdated maps of road defects mainly potholes, with the aid of drones.',
     imageUrl:
       'https://ei.marketwatch.com/Multimedia/2019/02/25/Photos/ZH/MW-HE521_pothol_20190225113729_ZH.jpg?uuid=a474c3e8-391b-11e9-93c5-ac162d7bc1f7',
       location: {
@@ -28,7 +28,7 @@ const DUMMY_PLACES = [
   {
     id: 'crash',
     title: 'Crash Alert',
-    description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
+    description: 'Crash Alert is a rapid response alert system that enables faster notifications and emergency reaction in your time of need. The system reacts in the event of vehicle accident through the real-time analysis of sensor data provided by the crash alert module.',
     imageUrl:
       'https://live-production.wcms.abc-cdn.net.au/05db6e05034e19270a77082b0bb9af0b?impolicy=wcms_crop_resize&cropH=1080&cropW=1920&xPos=0&yPos=0&width=862&height=485',
       location: {
@@ -40,7 +40,7 @@ const DUMMY_PLACES = [
   {
     id: 'distraction',
     title: 'Distraction and Drawsiness Alert',
-    description: 'Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries',
+    description: 'Distraction and drawsiness fearuer logs pilot drowsiness and on-road distractions to help fleet managers better monitor their drivers.',
     imageUrl:
       'https://www.frotcom.com/sites/default/files/styles/asset_image_full/public/assets/images/how_to_curb_distracted_driving_bp_-_frotcom.jpg?itok=Y74LkgXX',
       location: {

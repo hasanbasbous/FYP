@@ -13,6 +13,8 @@ body {
   background: #ccc;
 }
 
+
+
 .slide-in-left-enter {
   transform: translateX(-100%);
 }
@@ -40,3 +42,4 @@ body {
   justify-content: center;
   align-items: center;
 }
+

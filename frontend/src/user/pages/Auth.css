@@ -5,11 +5,18 @@
 
 .authentication {
   width: 90%;
-  max-width: 25rem;
+  max-width: 30rem;
   margin: 7rem auto;
+  padding: 2%;
   text-align: center;
+  height: auto;
+  
 }
 
+
 .authentication form {
+  margin-top: 1rem;
   margin-bottom: 1rem;
 }
+
+

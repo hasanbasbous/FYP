@@ -13,3 +13,4 @@ const crashSchema = new Schema({
 });
 
 module.exports = mongoose.model('Crash', crashSchema);
+

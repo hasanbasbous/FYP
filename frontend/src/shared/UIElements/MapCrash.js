@@ -183,7 +183,7 @@ const MapCrash = (props) => {
 			successNotification();
 			// setTimeout(() => window.location.reload(), 4000);
 			if (initialCrash) {
-				handleActiveMarker(initialCrash[0]._id);
+				//handleActiveMarker(initialCrash[0]._id);
 				setActiveMarker(null);
 			}
 		});
@@ -238,10 +238,10 @@ const MapCrash = (props) => {
 					</Marker>
 				))}
 			</GoogleMap>
-			<div className="grid-container">
+			<div className='buttons'>
 				<div className="custom-select">
 					<select id="mySelect" onChange={myFunction}>
-						<option value="reset">Reset</option>
+						<option value="reset">All time</option>
 						<option value="January">January</option>
 						<option value="February">February</option>
 						<option value="March">March</option>
@@ -257,8 +257,9 @@ const MapCrash = (props) => {
 					</select>
 				</div>
 
-				<Button to="/features">Go Back</Button>
-			</div>
+				<Button to="/features" className='btn-map'>Go Back</Button>
+				</div>
+			
 		</React.Fragment>
 	);
 };

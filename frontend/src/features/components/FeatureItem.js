@@ -41,11 +41,15 @@ const FeatureItem = (props) => {
 					</div>
 					<div className="feature-item__actions">
 						{props.id === 'parking' ? (
-							<Button to="/parking">Choose parking lot</Button>
+							<Button to="/parking" className="btn">
+								Choose parking lot
+							</Button>
 						) : props.id === 'crash' ? (
 							<Button to="/crash">View on Map</Button>
 						) : props.id === 'potholes' ? (
 							<Button to="/potholes">View on Map</Button>
+						) : props.id === 'distraction' ? (
+							<Button to="/distraction">View instances</Button>
 						) : (
 							<Button onClick={openPopupHandler}>View on Map</Button>
 						)}

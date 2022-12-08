@@ -8,3 +8,4 @@ router.get('/', potholeControllers.getPotholes);
 router.post('/', potholeControllers.createdPothole);
 
 module.exports = router;
+
